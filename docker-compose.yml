@@ -1,0 +1,22 @@
+services:
+  stk:
+    build:
+      context: ./container/
+
+    image: ludwigprager/stk-server
+    restart: unless-stopped
+    network_mode: "host"        
+    volumes:
+      - "./server_config.xml:/stk/server_config.xml"
+    environment:
+      USERNAME: myusername
+      PASSWORD: mypassword
+      AI_KARTS: 6
+    ports:
+      - "2757:2757"
+      - "2759:2759"
+
+# test:
+#   image: nginx
+#   ports:
+#     - "2758:80"
